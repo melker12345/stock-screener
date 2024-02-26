@@ -12,6 +12,15 @@
     <div class="fetch">
       <fetch @data-fetched="handleDataFetched" />
     </div>
+
+    <button @click="toggleFilter()" class="toggleFilter">
+      Toggle filter
+    </button>
+    
+    <div v-if="toggleFilterCheck">
+      <Filter />
+    </div>
+
     <div>
       <table-component :income-and-metrics="incomeAndMetrics" />
     </div>
@@ -22,26 +31,33 @@
 import axios from 'axios';
 import Fetch from './fetch.vue';
 import TableComponent from './table.vue';
-import Navbar from './navbar.vue';
+import Navbar from './Navbar.vue';
+import Filter from './Filter.vue';
 
 export default {
   name: 'Home',
   components: {
     Fetch,
     TableComponent,
-    Navbar
+    Navbar,
+    Filter
   },
   // the fetchIndex should fetch all items in the indexList
   data() {
     return {
       incomeAndMetrics: [],
-
+      toggleFilterCheck: false,
       indexChanges: [], // Use an array to store objects with index data
       indexList: ['^OMXS30', '^NDX', '^SPX', '^DJSH'] // indexes Stockholm, Dow Jones, Nasdaq, S&P 500, Dow Jones Shanghai
     };
   },
 
   methods: {
+    toggleFilter(){
+      this.toggleFilterCheck = !this.toggleFilterCheck;
+      console.log(this.toggleFilter);
+    },    
+
     handleDataFetched(data) {
       this.incomeAndMetrics = data;
     },
@@ -125,6 +141,10 @@ body {
   justify-content: center;
   align-items: center;
 
+}
+.toggleFilter{
+  margin-top: 1rem;
+  padding: 10px;
 }
 
 * {

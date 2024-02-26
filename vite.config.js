@@ -1,5 +1,8 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { defineConfig } from 'vite'
+import vue from '@vitejs/plugin-vue'
+
 
 export default defineConfig({
   plugins: [vue()],
@@ -12,5 +15,7 @@ export default defineConfig({
         rewrite: path => path.replace(/^\/api/, '') // Rewrite the path: remove '/api'
       }
     }
-  }
+  },
+  // Disable forceConsistentCasingInFileNames
+  forceConsistentCasingInFileNames: false
 })

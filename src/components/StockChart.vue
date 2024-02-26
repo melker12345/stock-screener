@@ -10,8 +10,7 @@
 <script>
 import Highcharts from 'highcharts/highstock';
 import axios from 'axios';
-import Navbar from './navbar.vue';
-
+import Navbar from './Navbar.vue';
 export default {
   props: ['symbol'],
   components: {
